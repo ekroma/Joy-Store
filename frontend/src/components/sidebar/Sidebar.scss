@@ -1,0 +1,178 @@
+img {
+	position: absolute; /* Зафиксированное положение */
+	margin-top: 25px;
+	margin-left: 90px;
+}
+
+.sidebar {
+	/* Позиционирование и слой */
+	position: absolute; /* Зафиксированное положение */
+	top: 0; /* Прижимаем к верхней части экрана */
+	left: 0; /* Прижимаем к левой части экрана */
+	z-index: 1; /* Уровень наложения элемента */
+
+	/* Блоковая модель */
+	display: block; /* Элемент отображается как блочный */
+	width: 20%; /* Ширина элемента */
+	height: 100%; /* Высота элемента, в процентах от высоты области просмотра */
+
+	//background-color: black;
+}
+
+.sidebar-button {
+}
+
+.sidebar-icon {
+	margin-right: 10px; /* Отступ между иконкой и текстом */
+	position: relative; /* Относительное позиционирование */
+	width: 24px; /* Указываем размеры, если не были установлены */
+	height: 24px;
+}
+
+.sidebar_text {
+	color: #c1c3cf;
+	padding: 0px 20px 13px 20px;
+	font-weight: 600;
+	font-size: 16px;
+	text-transform: uppercase;
+	list-style-type: none;
+}
+
+.sidebar_h1 {
+	margin: 30px 100px 55px;
+	font-size: 18px;
+	width: 300px;
+	font-weight: 300;
+	text-align: center;
+	text-transform: uppercase;
+	color: #c1c3cf;
+	position: absolute;
+	text-decoration: none;
+}
+
+.sidebar_h2 {
+	color: rgba(165, 167, 184, 0.3137254901960784);
+	font-size: 13px;
+	font-weight: 700;
+	margin: 95px 0 0 35px;
+	margin-bottom: 20px;
+}
+
+.sidebar_span {
+	position: fixed;
+	color: white;
+	font-size: 10px;
+	padding-top: 500px;
+	margin-left: 50px;
+}
+
+.sidebar_svg {
+	display: flex;
+	justify-content: center; /* Центрирует SVG внутри span */
+	margin-right: 8px; /* Отступ для SVG, чтобы текст не прилипал к иконке */
+}
+
+.button {
+	display: inline-flex;
+	align-items: center;
+	//justify-content: center; /* Центрирует содержимое кнопки */
+	padding: 20px 10px;
+	width: 250px; /* Фиксированная ширина кнопок */
+	//background-color: #007bff;
+	color: #c1c3cf;
+	border: none;
+	border-radius: 5px;
+	cursor: pointer;
+	text-decoration: none;
+	font-size: 16px;
+	text-align: center; /* Для гарантии центрирования текста в кнопке */
+}
+
+.button svg {
+	margin-right: 8px;
+}
+
+.button:hover {
+	color: white;
+	background-color: rgba(0, 0, 0, 0.07);
+}
+
+.button_down {
+	display: inline-flex;
+	padding: 10px 35px;
+	width: 250px;
+	border: none;
+	border-radius: 5px;
+	cursor: pointer;
+	text-decoration: none;
+	font-size: 14px;
+	margin-top: 10px;
+}
+
+.button_down:hover {
+	color: white;
+}
+
+.button_down a {
+	text-decoration: none; /* Убирает подчеркивание */
+	color: inherit; /* Опционально, заставляет ссылки наследовать цвет текста от родителя */
+}
+
+.button_neon {
+	display: inline-flex;
+	align-items: center;
+	//justify-content: center; /* Центрирует содержимое кнопки */
+	padding: 20px 10px;
+	width: 250px; /* Фиксированная ширина кнопок */
+	//background-color: #007bff;
+	color: #c1c3cf;
+	border: none;
+	border-radius: 5px;
+	cursor: pointer;
+	text-decoration: none;
+	font-size: 16px;
+	text-align: center; /* Для гарантии центрирования текста в кнопке */
+	transition: 0.2s;
+}
+
+.button_neon:hover {
+	color: white;
+	background-color: rgba(0, 0, 0, 0.07);
+	box-shadow: 0 0 0px #c1c3cf, 0 0 0px #c1c3cf, 0 0 0px #c1c3cf, 0 0 5px #c1c3cf;
+}
+
+.button_neon.active {
+	/* Скопируйте сюда стили из .button_neon:hover */
+	//color: white;
+	background-color: rgba(0, 0, 0, 0.07);
+	box-shadow: 0 0 5px #c1c3cf;
+}
+
+.button_background {
+	width: 250px;
+	background: rgba(0, 0, 0, 0.07);
+}
+
+.link-container {
+	position: relative;
+	display: flex;
+	align-items: center; /* Выравнивает текст и иконку по центру */
+}
+
+.indicator {
+	position: absolute;
+	top-right: 0; /* Располагает иконку справа от текста */
+	margin-left: 200px;
+	transform: translateX(100%); /* Сдвигает иконку вправо от края текста */
+}
+
+.button_neon {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+}
+
+.link_content {
+	display: flex;
+	align-items: center;
+}

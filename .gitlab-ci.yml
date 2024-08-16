@@ -1,0 +1,37 @@
+# stages:
+#   - build
+#   - deploy
+
+# build-image:
+#   stage: build
+#   image: docker:20.10.16
+#   services:
+#     - docker:20.10.16-dind
+#   script:
+#     - docker ps -a
+#     - docker-compose down
+#     - docker-compose build
+# #  only:
+# #    - main
+
+
+# deploy:
+#   stage: deploy
+#   image: docker:20.10.16
+#   services:
+#     - docker:20.10.16-dind
+
+#   before_script:
+#     - chmod 400 $KEY_PEM
+#   script:
+#     - ssh -o StrictHostKeyChecking=no -i $KEY_PEM ubuntu@34.226.140.11 "
+#         cd online_store &&
+#         git pull origin main &&
+#         sudo docker-compose down && 
+#         sudo docker-compose build && 
+#         sudo docker-compose up"
+# #  only:
+# #    - main
+    
+
+

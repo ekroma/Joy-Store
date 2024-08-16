@@ -1,0 +1,15 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background: radial-gradient(farthest-side ellipse at 10% 0,#333867 20%,#17193b);
+  background-repeat: no-repeat;
+  font-family: Montserrat,sans-serif;
+}
+
+.app {
+  font-size: 35px;
+}

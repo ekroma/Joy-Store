@@ -1,0 +1,44 @@
+.home {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    color: white;
+}
+
+label {
+    color: white;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+.LoginFormContainer {
+  width: 100%;
+  height: 100vh;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+
+  h1 {
+    color: white;
+  }
+
+  .form {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+    border-radius: 20px;
+    input {
+      border-radius: 1rem;
+      border: 1px solid #c0c0c0;
+      padding: 10px 15px;
+    }
+  }
+  p {
+    margin-top: 30px;
+  }
+}

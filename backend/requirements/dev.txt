@@ -1,0 +1,23 @@
+fastapi
+uvicorn[standard]
+pydantic-settings==2.0.3
+# Jinja2
+PyJWT
+fastapi-cache2
+redis
+pydantic[email]
+pydantic_extra_types
+sentry-sdk[fastapi]
+celery
+google-auth
+google-auth-oauthlib
+google-api-python-client
+# aiohttp
+fastapi_versioning
+passlib
+motor
+bcrypt
+python-multipart
+# httpx
+bson
+fastapi_limiter

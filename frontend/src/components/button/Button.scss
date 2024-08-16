@@ -1,0 +1,27 @@
+.loginButton {
+    display: inline-flex;
+    align-items: center;
+    //justify-content: center; /* Центрирует содержимое кнопки */
+    padding: 20px 10px;
+    width: 250px; /* Фиксированная ширина кнопок */
+    background-color: rgba(911, 911, 911, 0.07);
+    color: #c1c3cf;
+    border: none;
+    border-radius: 15px;
+    cursor: pointer;
+    text-decoration: none;
+    font-size: 16px;
+    text-align: center; /* Для гарантии центрирования текста в кнопке */
+    flex-direction: column;
+    margin-top: 30px;
+}
+
+.loginButton:hover {
+    color: black;
+    background-color: rgba(555, 555, 111, 0.90);
+}
+
+.loginButton.active {
+    color: red;
+    background-color: rgba(0, 0, 0, 0.2);
+}

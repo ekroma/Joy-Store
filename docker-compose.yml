@@ -1,0 +1,133 @@
+version: "3.3"
+
+services:
+
+  database:
+    image: mongo
+    container_name: mongodb
+    ports:
+      - "27018:27017"
+    env_file: .env
+    volumes:
+      - ./persistentdata/db:/var/lib/mongo/data
+
+  mongo-express:
+    image: mongo-express
+    restart: always
+    ports:
+      - 8081:8081
+    environment:
+      ME_CONFIG_MONGODB_ADMINUSERNAME: egosumomnia
+      ME_CONFIG_MONGODB_ADMINPASSWORD: moment0veritatis
+      ME_CONFIG_MONGODB_URL: mongodb://egosumomnia:moment0veritatis@database:27017
+      ME_CONFIG_SITE_BASEURL: /mongo/
+      ME_CONFIG_BASICAUTH_USERNAME: egosumomnia
+      ME_CONFIG_BASICAUTH_PASSWORD: moment0veritatis 
+    depends_on:
+      - database
+
+  webapp:
+    build:
+      context: ./backend
+    image: fastapi
+    restart: always
+    ports:
+      - "8000:8000"
+    volumes:
+      - ./persistentdata/media:/var/www/media
+      - ./certs:/var/www/certs
+    env_file:
+      - ./.env
+    command: bash -c "export PYTHONPATH=$PYTHONPATH:/app && python3 src/main.py"
+    depends_on:
+      - database
+
+  redis:
+    restart: always
+    image: redis:7-alpine
+    volumes:
+      - ./backend/redis:/opt/redis
+
+  celery:
+    build:
+      context: ./backend 
+    command: >
+      sh -c "celery -A src.apps.task_management.celery_app worker -l info"
+    env_file:
+      - .env
+    depends_on:
+      - redis
+
+
+  nginx:
+    restart: always
+    build:
+        context: ./nginx
+    ports:
+    - "80:80"
+    - "443:443"
+    command: "/bin/sh -c 'while :; do sleep 6h & wait $${!}; nginx -s reload; done & nginx -g \"daemon off;\"'"
+    volumes:
+      # - etc-letsencrypt:/etc/letsencrypt
+      # - www-html:/var/www/certbot
+      - ./nginx/logs:/var/log/nginx/:rw
+      - ./persistentdata/static:/var/www/static
+      - ./frontend/dist:/dist
+      - ./persistentdata/media:/var/www/public/media
+    depends_on:
+      - webapp
+
+  goaccess:
+      image: 'xavierh/goaccess-for-nginxproxymanager:latest'
+      container_name: goaccess
+      restart: always
+      ports:
+          - '7880:7880'
+      environment:
+          - PUID=1000
+          - PGID=1000
+          - TZ=America/New_York         
+          - SKIP_ARCHIVED_LOGS=False
+          - DEBUG=False
+          - BASIC_AUTH=True
+          - BASIC_AUTH_USERNAME=lagmanvkusniy
+          - BASIC_AUTH_PASSWORD=plovhochu
+          - EXCLUDE_IPS=127.0.0.1
+          - LOG_TYPE=NGINX_ACCESS
+      volumes:
+      - ./nginx/logs:/opt/log/:rw
+      
+  portainer:
+    image: portainer/portainer-ce:latest
+    ports:
+      - 9000:9000
+    volumes:
+      - data:/data
+      - /var/run/docker.sock:/var/run/docker.sock
+    restart: unless-stopped
+
+  # certbot:
+  #   image: certbot/certbot
+  #   depends_on:
+  #     - nginx
+  #   command: certonly --webroot --webroot-path=/var/www/certbot --email evelbrus2@gmail.com --agree-tos --no-eff-email -d www.aress2245.store
+  #   volumes:
+  #     - etc-letsencrypt:/etc/letsencrypt
+  #     - www-html:/var/www/certbot
+
+
+  # certbot-renewal:
+  #   image: certbot/certbot
+  #   depends_on:
+  #     - nginx
+  #   entrypoint: sh -c "while :; do certbot renew; sleep 7d; done"
+  #   command: certonly --webroot --webroot-path=/var/www/certbot --email magma0922@gmail.com --agree-tos --no-eff-email -d www.aress2245.store
+  #   volumes:
+  #     - etc-letsencrypt:/etc/letsencrypt
+  #     - www-html:/var/www/certbot
+
+volumes:
+  data:
+  nginx-logs:
+#   www-html:
+#   etc-letsencrypt:
